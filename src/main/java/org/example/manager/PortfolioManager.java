@@ -16,7 +16,7 @@ public class PortfolioManager {
     }
 
     public List<Asset> getAssets() {
-        return assets;
+        return List.copyOf(assets);
     }
 
     public void showAssets() {
