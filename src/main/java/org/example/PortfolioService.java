@@ -12,6 +12,7 @@ public class PortfolioService {
 
         manager.addAsset(new Bond("Obligacja Skarbowa",
                 LocalDate.of(2025, 2, 5),
+                10000,
                 5.75,
                 36));
 

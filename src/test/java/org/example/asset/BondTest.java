@@ -14,6 +14,7 @@ class BondTest {
     void setUp() {
         bond = new Bond("Obligacja Skarbowa",
                 LocalDate.of(2025, 2, 5),
+                10000,
                 5.75,
                 36);
     }
@@ -30,7 +31,7 @@ class BondTest {
 
     @Test
     void interestRate() {
-        Assertions.assertEquals(5.75, bond.interestRate());
+        Assertions.assertEquals(5.75, bond.annualInterestRate());
     }
 
     @Test
