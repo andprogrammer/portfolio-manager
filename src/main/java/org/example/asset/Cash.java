@@ -6,9 +6,9 @@ import org.example.asset.monetaryUnit.MonetaryUnit;
 
 import java.time.LocalDate;
 
-public record Cash(MonetaryUnit currency,
-                   LocalDate purchaseDate,
-                   double amount
+public record Cash(double purchaseValue,
+                   MonetaryUnit currency,
+                   LocalDate purchaseDate
 ) implements Asset {
 
     @Override

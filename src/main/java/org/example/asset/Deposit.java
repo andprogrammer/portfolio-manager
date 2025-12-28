@@ -2,10 +2,13 @@ package org.example.asset;
 
 import org.example.asset.Impl.Asset;
 import org.example.asset.Impl.AssetType;
+import org.example.asset.monetaryUnit.MonetaryUnit;
 
 import java.time.LocalDate;
 
 public record Deposit(String name,
+                      double purchaseValue,
+                      MonetaryUnit currency,
                       LocalDate purchaseDate,
                       double interestRate,
                       int durationMonths
