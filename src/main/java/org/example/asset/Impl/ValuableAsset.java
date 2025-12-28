@@ -1,4 +1,4 @@
-package org.example.asset;
+package org.example.asset.Impl;
 
 public interface ValuableAsset extends Asset {
 

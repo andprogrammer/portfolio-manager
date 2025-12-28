@@ -1,6 +1,6 @@
 package org.example.manager;
 
-import org.example.asset.Asset;
+import org.example.asset.Impl.Asset;
 
 import java.util.ArrayList;
 import java.util.List;
