@@ -1,5 +1,8 @@
 package org.example.asset;
 
+import org.example.asset.Impl.AssetType;
+import org.example.asset.Impl.ValuableAsset;
+
 import java.time.LocalDate;
 
 public record Bond(String name,
