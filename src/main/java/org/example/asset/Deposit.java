@@ -7,4 +7,17 @@ public record Deposit(String name,
                       double interestRate,
                       int durationMonths
 ) implements Asset {
+
+    @Override
+    public AssetType type() {
+        return AssetType.DEPOSIT;
+    }
+
+    public LocalDate maturityDate() {
+        return purchaseDate.plusMonths(durationMonths);
+    }
+
+    public boolean isMatured() {
+        return LocalDate.now().isAfter(maturityDate());
+    }
 }

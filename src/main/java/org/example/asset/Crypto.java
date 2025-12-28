@@ -1,13 +1,20 @@
 package org.example.asset;
 
+import org.example.asset.monetaryUnit.MonetaryUnit;
+
 import java.time.LocalDate;
 
-public record Crypto(String cryptoName,
+public record Crypto(MonetaryUnit cryptoCurrency,
                      LocalDate purchaseDate,
                      double amount) implements Asset {
 
     @Override
+    public AssetType type() {
+        return AssetType.CRYPTO;
+    }
+
+    @Override
     public String name() {
-        return "Crypto (" + cryptoName + ")";
+        return cryptoCurrency.getName();
     }
 }

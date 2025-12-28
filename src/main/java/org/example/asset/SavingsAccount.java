@@ -1,16 +1,18 @@
 package org.example.asset;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
-public record SavingsAccount(String bankName,
+public record SavingsAccount(String name,
+                             String bankName,
                              LocalDate openingDate,
                              double initialAmount,
                              double annualInterestRate
 ) implements ValuableAsset {
 
     @Override
-    public String name() {
-        return "Savings Account (" + bankName + ")";
+    public AssetType type() {
+        return AssetType.SAVINGS_ACCOUNT;
     }
 
     @Override
@@ -20,11 +22,13 @@ public record SavingsAccount(String bankName,
 
     @Override
     public double purchaseValue() {
-        return 0;
+        return initialAmount;
     }
 
     @Override
     public double currentValue() {
-        return 0;
+        long days = ChronoUnit.DAYS.between(openingDate, LocalDate.now());
+        double years = days / 365.0;
+        return initialAmount * (1 + (annualInterestRate / 100) * years);
     }
 }

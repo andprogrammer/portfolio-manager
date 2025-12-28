@@ -12,7 +12,7 @@ class MetalTest {
 
     @BeforeEach
     void setUp() {
-        metal = new Metal("Zloto",
+        metal = new Metal(org.example.asset.monetaryUnit.Metal.GOLD,
                 LocalDate.of(2024, 3, 8),
                 31.1,
                 3500);
@@ -20,7 +20,7 @@ class MetalTest {
 
     @Test
     void name() {
-        Assertions.assertEquals("Zloto", metal.name());
+        Assertions.assertEquals(org.example.asset.monetaryUnit.Metal.GOLD.getName(), metal.name());
     }
 
     @Test
