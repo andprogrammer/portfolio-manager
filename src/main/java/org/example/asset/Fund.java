@@ -5,22 +5,20 @@ import java.time.LocalDate;
 public record Fund(String fundName,
                    LocalDate purchaseDate,
                    double units,
-                   double purchaseUnitPrice,
-                   double currencyUnitPrice
-) implements ValuableAsset {
+                   double purchaseUnitPrice
+) implements Asset {
+
+    @Override
+    public AssetType type() {
+        return AssetType.FUND;
+    }
 
     @Override
     public String name() {
-        return "Fund (" + fundName + ")";
+        return fundName;
     }
 
-    @Override
     public double purchaseValue() {
         return units * purchaseUnitPrice;
-    }
-
-    @Override
-    public double currentValue() {
-        return units * currencyUnitPrice;
     }
 }
