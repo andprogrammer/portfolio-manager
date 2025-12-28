@@ -1,6 +1,6 @@
-package org.example.manager;
+package org.portfolio.manager;
 
-import org.example.asset.Bond;
+import org.portfolio.asset.Bond;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

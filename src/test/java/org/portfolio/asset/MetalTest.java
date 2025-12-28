@@ -1,4 +1,4 @@
-package org.example.asset;
+package org.portfolio.asset;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -12,7 +12,7 @@ class MetalTest {
 
     @BeforeEach
     void setUp() {
-        metal = new Metal(org.example.asset.monetaryUnit.Metal.GOLD,
+        metal = new Metal(org.portfolio.asset.monetaryUnit.Metal.GOLD,
                 LocalDate.of(2024, 3, 8),
                 2,
                 31.1,
@@ -21,7 +21,7 @@ class MetalTest {
 
     @Test
     void name() {
-        Assertions.assertEquals(org.example.asset.monetaryUnit.Metal.GOLD.getName(), metal.name());
+        Assertions.assertEquals(org.portfolio.asset.monetaryUnit.Metal.GOLD.getName(), metal.name());
     }
 
     @Test

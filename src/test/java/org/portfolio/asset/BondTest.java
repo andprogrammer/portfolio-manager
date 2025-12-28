@@ -1,4 +1,4 @@
-package org.example.asset;
+package org.portfolio.asset;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
