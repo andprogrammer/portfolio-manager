@@ -15,8 +15,26 @@ public class PortfolioManager {
         }
     }
 
+    public double totalPurchaseValue() {
+        return assets.stream()
+                .mapToDouble(Asset::purchaseValue)
+                .sum();
+    }
+
+    public double totalProfit() {
+        return assets.stream()
+                .mapToDouble(Asset::profit)// ToDo distinguish currency PLN EURO USD...
+                .sum();
+    }
+
     public List<Asset> getAssets() {
         return List.copyOf(assets);
+    }
+
+    public void report() {
+        assets.forEach(asset -> {
+            System.out.printf(asset.name(), asset.purchaseDate(), asset.purchaseValue(), asset.profit());
+        });
     }
 
     public void showAssets() {

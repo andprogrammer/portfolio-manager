@@ -7,8 +7,11 @@ import org.example.asset.monetaryUnit.MonetaryUnit;
 import java.time.LocalDate;
 
 public record Crypto(MonetaryUnit cryptoCurrency,
+                     MonetaryUnit currency,
                      LocalDate purchaseDate,
-                     double amount) implements Asset {
+                     double quantity,
+                     double pricePerUnit
+) implements Asset {
 
     @Override
     public AssetType type() {
@@ -18,5 +21,10 @@ public record Crypto(MonetaryUnit cryptoCurrency,
     @Override
     public String name() {
         return cryptoCurrency.getName();
+    }
+
+    @Override
+    public double purchaseValue() {
+        return quantity * pricePerUnit;
     }
 }

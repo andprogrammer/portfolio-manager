@@ -20,8 +20,8 @@ class PortfolioManagerTest {
     @Test
     void addAsset() {
         Bond bond = new Bond("Obligacja Skarbowa",
-                LocalDate.of(2025, 2, 5),
                 10000,
+                LocalDate.of(2025, 2, 5),
                 5.75,
                 36);
         manager.addAsset(bond);

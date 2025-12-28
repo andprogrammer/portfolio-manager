@@ -2,7 +2,6 @@ package org.example.asset.Impl;
 
 public interface ValuableAsset extends Asset {
 
-    double purchaseValue();
     double currentValue();
 
     default double profit() {
