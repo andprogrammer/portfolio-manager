@@ -1,8 +1,8 @@
-package org.example.asset;
+package org.portfolio.asset;
 
-import org.example.asset.Impl.Asset;
-import org.example.asset.Impl.AssetType;
-import org.example.asset.monetaryUnit.MonetaryUnit;
+import org.portfolio.asset.Impl.Asset;
+import org.portfolio.asset.Impl.AssetType;
+import org.portfolio.asset.monetaryUnit.MonetaryUnit;
 
 import java.time.LocalDate;
 

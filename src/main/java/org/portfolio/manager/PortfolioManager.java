@@ -1,6 +1,6 @@
-package org.example.manager;
+package org.portfolio.manager;
 
-import org.example.asset.Impl.Asset;
+import org.portfolio.asset.Impl.Asset;
 
 import java.util.ArrayList;
 import java.util.List;

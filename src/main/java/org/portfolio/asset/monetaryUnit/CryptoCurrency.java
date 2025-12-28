@@ -1,4 +1,4 @@
-package org.example.asset.monetaryUnit;
+package org.portfolio.asset.monetaryUnit;
 
 public enum CryptoCurrency implements MonetaryUnit {
 
