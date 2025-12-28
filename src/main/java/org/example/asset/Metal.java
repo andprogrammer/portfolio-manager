@@ -1,11 +1,14 @@
 package org.example.asset;
 
+import org.example.asset.Impl.Asset;
+import org.example.asset.Impl.AssetType;
 import org.example.asset.monetaryUnit.MonetaryUnit;
 
 import java.time.LocalDate;
 
 public record Metal(MonetaryUnit metal,
                     LocalDate purchaseDate,
+                    double quantity,
                     double weight,
                     double pricePerUnit
 ) implements Asset {
@@ -18,5 +21,10 @@ public record Metal(MonetaryUnit metal,
     @Override
     public String name() {
         return metal.getName();
+    }
+
+    @Override
+    public double purchaseValue() {
+        return quantity * pricePerUnit;
     }
 }

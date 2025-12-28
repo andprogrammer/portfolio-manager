@@ -1,10 +1,13 @@
 package org.example.asset;
 
+import org.example.asset.Impl.AssetType;
+import org.example.asset.Impl.ValuableAsset;
+
 import java.time.LocalDate;
 
 public record Bond(String name,
+                   double purchaseValue,
                    LocalDate purchaseDate,
-                   double nominalAmount,
                    double annualInterestRate,
                    int durationMonths
 ) implements ValuableAsset {
@@ -15,14 +18,9 @@ public record Bond(String name,
     }
 
     @Override
-    public double purchaseValue() {
-        return nominalAmount;
-    }
-
-    @Override
     public double currentValue() {
         double years = durationMonths / 12.0;
-        return nominalAmount * (1 + (annualInterestRate / 100) * years);
+        return purchaseValue * (1 + (annualInterestRate / 100) * years);
     }
 
     public LocalDate maturityDate() {

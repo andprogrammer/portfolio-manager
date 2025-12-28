@@ -14,6 +14,7 @@ class MetalTest {
     void setUp() {
         metal = new Metal(org.example.asset.monetaryUnit.Metal.GOLD,
                 LocalDate.of(2024, 3, 8),
+                2,
                 31.1,
                 3500);
     }

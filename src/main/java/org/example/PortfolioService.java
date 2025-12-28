@@ -12,20 +12,24 @@ public class PortfolioService {
         PortfolioManager manager = new PortfolioManager();
 
         manager.addAsset(new Bond("Obligacja 3-letnie TOS",
-                LocalDate.of(2025, 2, 5),
                 10000,
+                LocalDate.of(2025, 2, 5),
                 5.75,
                 36));
 
-        manager.addAsset(new Cash(Currency.PLN,
-                LocalDate.of(2025, 2, 5),
-                999));
+        manager.addAsset(new Cash(800,
+                Currency.PLN,
+                LocalDate.of(2025, 2, 5)));
 
         manager.addAsset(new Crypto(CryptoCurrency.BTC,
+                Currency.EUR,
                 LocalDate.of(2024, 3, 2),
-                0.3));
+                0.3,
+                39000));
 
         manager.addAsset(new Deposit("Lokata Mobilna",
+                12000,
+                Currency.PLN,
                 LocalDate.of(2025, 3, 6),
                 4.5,
                 6));
@@ -37,18 +41,23 @@ public class PortfolioService {
 
         manager.addAsset(new Metal(org.example.asset.monetaryUnit.Metal.GOLD,
                 LocalDate.of(2024, 3, 8),
+                2,
                 31.1,
                 3500));
 
         manager.addAsset(new SavingsAccount("Oko Bonus",
                 "ING",
-                LocalDate.of(2025, 2, 7),
                 15000,
+                Currency.PLN,
+                LocalDate.of(2025, 2, 7),
                 5.2));
 
         manager.addAsset(new Stock("PKN Orlen",
+                Currency.PLN,
                 LocalDate.of(2025, 2, 7),
                 4,
                 65.3));
+
+        manager.report();
     }
 }
