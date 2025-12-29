@@ -3,6 +3,7 @@ package org.portfolio.asset;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.portfolio.asset.monetaryUnit.Currency;
 
 import java.time.LocalDate;
 
@@ -13,7 +14,7 @@ class BondTest {
     @BeforeEach
     void setUp() {
         bond = new Bond("Obligacja Skarbowa",
-                10000,
+                new Money(10000, Currency.PLN),
                 LocalDate.of(2025, 2, 5),
                 5.75,
                 36);

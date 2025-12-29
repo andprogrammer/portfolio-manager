@@ -1,9 +1,13 @@
 package org.portfolio.manager;
 
+import org.portfolio.asset.Money;
 import org.portfolio.asset.impl.Asset;
+import org.portfolio.asset.monetaryUnit.MonetaryUnit;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class PortfolioManager {
 
@@ -15,16 +19,22 @@ public class PortfolioManager {
         }
     }
 
-    public double totalPurchaseValue() {
+    public Map<MonetaryUnit, Double> totalPurchaseValueByCurrency() {
         return assets.stream()
-                .mapToDouble(Asset::purchaseValue)
-                .sum();
+                .map(Asset::purchaseValue)
+                .collect(Collectors.groupingBy(
+                        Money::currency,
+                        Collectors.summingDouble(Money::amount)
+                ));
     }
 
-    public double totalProfit() {
+    public Map<MonetaryUnit, Double> totalProfitByCurrency() {
         return assets.stream()
-                .mapToDouble(Asset::profit)// ToDo distinguish currency PLN EURO USD...
-                .sum();
+                .map(Asset::profit)
+                .collect(Collectors.groupingBy(
+                        Money::currency,
+                        Collectors.summingDouble(Money::amount)
+                ));
     }
 
     public List<Asset> findAll() {

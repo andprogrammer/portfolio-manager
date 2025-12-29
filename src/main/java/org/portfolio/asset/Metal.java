@@ -8,6 +8,7 @@ import java.time.LocalDate;
 
 public record Metal(MonetaryUnit metal,
                     LocalDate purchaseDate,
+                    MonetaryUnit currency,
                     double quantity,
                     double weight,
                     double pricePerUnit
@@ -24,7 +25,7 @@ public record Metal(MonetaryUnit metal,
     }
 
     @Override
-    public double purchaseValue() {
-        return quantity * pricePerUnit;
+    public Money purchaseValue() {
+        return new Money(quantity * pricePerUnit, currency);
     }
 }

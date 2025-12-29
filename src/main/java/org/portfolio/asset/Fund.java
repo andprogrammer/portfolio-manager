@@ -2,11 +2,13 @@ package org.portfolio.asset;
 
 import org.portfolio.asset.impl.Asset;
 import org.portfolio.asset.impl.AssetType;
+import org.portfolio.asset.monetaryUnit.MonetaryUnit;
 
 import java.time.LocalDate;
 
 public record Fund(String name,
                    LocalDate purchaseDate,
+                   MonetaryUnit currency,
                    double units,
                    double purchaseUnitPrice
 ) implements Asset {
@@ -16,7 +18,7 @@ public record Fund(String name,
         return AssetType.FUND;
     }
 
-    public double purchaseValue() {
-        return units * purchaseUnitPrice;
+    public Money purchaseValue() {
+        return new Money(units * purchaseUnitPrice, currency);
     }
 }

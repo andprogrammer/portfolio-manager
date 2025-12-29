@@ -24,7 +24,7 @@ public record Crypto(MonetaryUnit cryptoCurrency,
     }
 
     @Override
-    public double purchaseValue() {
-        return quantity * pricePerUnit;
+    public Money purchaseValue() {
+        return new Money(quantity * pricePerUnit, currency);
     }
 }

@@ -1,10 +1,12 @@
 package org.portfolio.asset.impl;
 
+import org.portfolio.asset.Money;
+
 public interface ValuableAsset extends Asset {
 
-    double currentValue();
+    Money currentValue();
 
-    default double profit() {
-        return currentValue() - purchaseValue();
+    default Money profit() {
+        return currentValue().subtract(purchaseValue());
     }
 }
