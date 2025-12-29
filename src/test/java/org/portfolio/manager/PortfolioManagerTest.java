@@ -25,8 +25,8 @@ class PortfolioManagerTest {
                 5.75,
                 36);
         manager.addAsset(bond);
-        assertEquals(bond.name(), manager.getAssets().getFirst().name());
-        assertEquals(bond.purchaseDate(), manager.getAssets().getFirst().purchaseDate());
+        assertEquals(bond.name(), manager.findAll().getFirst().name());
+        assertEquals(bond.purchaseDate(), manager.findAll().getFirst().purchaseDate());
 //        assertEquals(bond.interestRate(), manager.getAssets().getFirst().interestRate());
 //        assertEquals(bond.durationMonths(), manager.getAssets().getFirst().durationMonths());
     }

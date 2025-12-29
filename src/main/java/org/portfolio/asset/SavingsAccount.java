@@ -1,7 +1,7 @@
 package org.portfolio.asset;
 
-import org.portfolio.asset.Impl.AssetType;
-import org.portfolio.asset.Impl.ValuableAsset;
+import org.portfolio.asset.impl.AssetType;
+import org.portfolio.asset.impl.ValuableAsset;
 import org.portfolio.asset.monetaryUnit.MonetaryUnit;
 
 import java.time.LocalDate;

@@ -1,4 +1,4 @@
-package org.portfolio.asset.Impl;
+package org.portfolio.asset.impl;
 
 import java.time.LocalDate;
 

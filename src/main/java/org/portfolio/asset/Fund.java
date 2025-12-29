@@ -1,7 +1,7 @@
 package org.portfolio.asset;
 
-import org.portfolio.asset.Impl.Asset;
-import org.portfolio.asset.Impl.AssetType;
+import org.portfolio.asset.impl.Asset;
+import org.portfolio.asset.impl.AssetType;
 
 import java.time.LocalDate;
 

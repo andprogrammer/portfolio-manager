@@ -1,6 +1,6 @@
 package org.portfolio.manager;
 
-import org.portfolio.asset.Impl.Asset;
+import org.portfolio.asset.impl.Asset;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +27,7 @@ public class PortfolioManager {
                 .sum();
     }
 
-    public List<Asset> getAssets() {
+    public List<Asset> findAll() {
         return List.copyOf(assets);
     }
 
