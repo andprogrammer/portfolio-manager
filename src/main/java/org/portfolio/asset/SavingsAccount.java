@@ -2,15 +2,13 @@ package org.portfolio.asset;
 
 import org.portfolio.asset.impl.AssetType;
 import org.portfolio.asset.impl.ValuableAsset;
-import org.portfolio.asset.monetaryUnit.MonetaryUnit;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
 public record SavingsAccount(String name,
                              String bankName,
-                             double purchaseValue,
-                             MonetaryUnit currency,
+                             Money purchaseValue,
                              LocalDate purchaseDate,
                              double annualInterestRate
 ) implements ValuableAsset {
@@ -21,9 +19,10 @@ public record SavingsAccount(String name,
     }
 
     @Override
-    public double currentValue() {
+    public Money currentValue() {
         long days = ChronoUnit.DAYS.between(purchaseDate, LocalDate.now());
         double years = days / 365.0;
-        return purchaseValue * (1 + (annualInterestRate / 100) * years);
+        double result = purchaseValue.amount() * (1 + (annualInterestRate / 100) * years);
+        return new Money(result, purchaseValue.currency());
     }
 }

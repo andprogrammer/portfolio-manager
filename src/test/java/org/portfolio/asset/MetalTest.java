@@ -3,6 +3,7 @@ package org.portfolio.asset;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.portfolio.asset.monetaryUnit.Currency;
 
 import java.time.LocalDate;
 
@@ -14,6 +15,7 @@ class MetalTest {
     void setUp() {
         metal = new Metal(org.portfolio.asset.monetaryUnit.Metal.GOLD,
                 LocalDate.of(2024, 3, 8),
+                Currency.USD,
                 2,
                 31.1,
                 3500);

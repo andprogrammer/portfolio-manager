@@ -1,14 +1,15 @@
 package org.portfolio.asset.impl;
 
+import org.portfolio.asset.Money;
+
 import java.time.LocalDate;
 
 public interface Asset {
-
     AssetType type();
     String name();
     LocalDate purchaseDate();
-    double purchaseValue();
-    default double profit() {
+    Money purchaseValue();
+    default Money profit() {
         return purchaseValue();
     }
 }

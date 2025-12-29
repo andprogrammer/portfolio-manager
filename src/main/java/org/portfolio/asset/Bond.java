@@ -2,11 +2,12 @@ package org.portfolio.asset;
 
 import org.portfolio.asset.impl.AssetType;
 import org.portfolio.asset.impl.ValuableAsset;
+import org.portfolio.asset.monetaryUnit.Currency;
 
 import java.time.LocalDate;
 
 public record Bond(String name,
-                   double purchaseValue,
+                   Money purchaseValue,
                    LocalDate purchaseDate,
                    double annualInterestRate,
                    int durationMonths
@@ -18,9 +19,10 @@ public record Bond(String name,
     }
 
     @Override
-    public double currentValue() {
+    public Money currentValue() {
         double years = durationMonths / 12.0;
-        return purchaseValue * (1 + (annualInterestRate / 100) * years);
+        double calculation = purchaseValue.amount() * (1 + (annualInterestRate / 100) * years);
+        return new Money(calculation, Currency.PLN);
     }
 
     public LocalDate maturityDate() {
