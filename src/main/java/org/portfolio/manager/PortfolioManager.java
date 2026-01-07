@@ -1,9 +1,14 @@
 package org.portfolio.manager;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.portfolio.asset.Money;
 import org.portfolio.asset.impl.Asset;
 import org.portfolio.asset.monetaryUnit.MonetaryUnit;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -61,4 +66,32 @@ public class PortfolioManager {
             assets.forEach(System.out::println);
         }
     }
+
+    public void serializeAssets() {
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.registerModule(new JavaTimeModule());
+        mapper.findAndRegisterModules();
+
+        // write
+        try {
+            mapper.writeValue(new File("portfolio.json"), assets);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        // read
+        try {
+            List<Asset> loadedAssets = mapper.readValue(
+                    new File("portfolio.json"),
+                    new TypeReference<List<Asset>>() {}
+            );
+
+            assets.clear();
+            assets.addAll(loadedAssets);
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }

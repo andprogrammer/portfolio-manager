@@ -15,7 +15,37 @@
     </properties>
 
     <dependencies>
-        <!-- JUnit 5.10.3, compatible with JDK 21 -->
+
+        <!-- ===================== -->
+        <!-- JSON (Jackson)        -->
+        <!-- ===================== -->
+
+        <!-- Core Jackson databind -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.17.2</version>
+        </dependency>
+
+        <!-- Java time support (LocalDate, etc.) -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+            <version>2.17.2</version>
+        </dependency>
+
+        <!-- Records / constructor parameter names -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.module</groupId>
+            <artifactId>jackson-module-parameter-names</artifactId>
+            <version>2.17.2</version>
+        </dependency>
+
+        <!-- ===================== -->
+        <!-- Testing               -->
+        <!-- ===================== -->
+
+        <!-- JUnit 5 -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
@@ -23,15 +53,15 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- Mockito Core, compatible with JDK 21 -->
+        <!-- Mockito Core -->
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
-            <version>5.19.0</version> <!-- Latest version -->
+            <version>5.19.0</version>
             <scope>test</scope>
         </dependency>
 
-        <!-- Mockito JUnit Jupiter, compatible with JDK 21 -->
+        <!-- Mockito JUnit Jupiter -->
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-junit-jupiter</artifactId>

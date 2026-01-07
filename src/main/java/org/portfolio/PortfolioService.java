@@ -57,6 +57,7 @@ public class PortfolioService {
                 4,
                 65.3));
 
-        manager.report();
+//        manager.report();
+        manager.serializeAssets();
     }
 }
