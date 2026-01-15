@@ -1,4 +1,4 @@
-package org.portfolio.portfolio;
+package org.portfolio.manager;
 
 import org.portfolio.asset.core.Asset;
 import org.portfolio.asset.core.Money;
