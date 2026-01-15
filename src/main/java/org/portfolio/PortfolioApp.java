@@ -1,6 +1,7 @@
 package org.portfolio;
 
 import org.portfolio.manager.Portfolio;
+import org.portfolio.manager.report.ConsolePortfolioReporter;
 
 public final class PortfolioApp {
 
@@ -8,9 +9,7 @@ public final class PortfolioApp {
 
     public static void run() {
         Portfolio portfolio = DemoPortfolio.create();
-
-        // show detailed report
-        portfolio.report();
+        ConsolePortfolioReporter.print(portfolio.reportLines());
     }
 
     public static void main(String[] args) {

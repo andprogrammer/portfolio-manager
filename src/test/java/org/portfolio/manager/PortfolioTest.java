@@ -9,6 +9,7 @@ import org.portfolio.asset.unit.Currency;
 import java.time.LocalDate;
 import java.util.Map;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class PortfolioTest {
@@ -52,5 +53,21 @@ class PortfolioTest {
         Map<?, Double> profits = portfolio.totalProfitByCurrency();
 
         assertEquals(100, profits.get(Currency.PLN), 0.01);
+    }
+
+    @Test
+    void shouldReturnReportLinesForAllAssets() {
+        Portfolio portfolio = new Portfolio();
+
+        portfolio.addAsset(new Cash(
+                new Money(100, Currency.EUR),
+                LocalDate.now()
+        ));
+
+        assertThat(portfolio.reportLines())
+                .hasSize(1)
+                .allSatisfy(line ->
+                        assertThat(line.name()).isEqualTo("Euro EUR €")
+                );
     }
 }
