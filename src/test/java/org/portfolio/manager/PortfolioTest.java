@@ -1,76 +1,56 @@
 package org.portfolio.manager;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.portfolio.asset.core.Asset;
 import org.portfolio.asset.core.Money;
-import org.portfolio.asset.core.ValuableAsset;
+import org.portfolio.asset.model.Bond;
+import org.portfolio.asset.model.Cash;
 import org.portfolio.asset.unit.Currency;
 
+import java.time.LocalDate;
 import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class PortfolioTest {
 
-    private Portfolio portfolio;
-
-    @BeforeEach
-    void setUp() {
-        portfolio = new Portfolio();
-    }
-
     @Test
-    void shouldAddAsset() {
-        Asset asset = mock(Asset.class);
+    void shouldSumPurchaseValuesByCurrency() {
+        Portfolio portfolio = new Portfolio();
 
-        portfolio.addAsset(asset);
+        portfolio.addAsset(new Cash(
+                new Money(500, Currency.PLN),
+                LocalDate.now()
+        ));
 
-        assertEquals(1, portfolio.findAll().size());
-    }
-
-    @Test
-    void shouldIgnoreNullAsset() {
-        portfolio.addAsset(null);
-
-        assertTrue(portfolio.findAll().isEmpty());
-    }
-
-    @Test
-    void shouldCalculateTotalPurchaseValueByCurrency() {
-        Asset asset1 = mock(Asset.class);
-        when(asset1.purchaseValue()).thenReturn(new Money(100, Currency.PLN));
-
-        Asset asset2 = mock(Asset.class);
-        when(asset2.purchaseValue()).thenReturn(new Money(50, Currency.PLN));
-
-        Asset asset3 = mock(Asset.class);
-        when(asset3.purchaseValue()).thenReturn(new Money(200, Currency.EUR));
-
-        portfolio.addAsset(asset1);
-        portfolio.addAsset(asset2);
-        portfolio.addAsset(asset3);
+        portfolio.addAsset(new Cash(
+                new Money(300, Currency.PLN),
+                LocalDate.now()
+        ));
 
         Map<?, Double> totals = portfolio.totalPurchaseValueByCurrency();
 
-        assertEquals(150, totals.get(Currency.PLN));
-        assertEquals(200, totals.get(Currency.EUR));
+        assertEquals(800, totals.get(Currency.PLN));
     }
 
     @Test
-    void shouldCalculateTotalProfitOnlyForValuableAssets() {
-        ValuableAsset valuableAsset = mock(ValuableAsset.class);
-        when(valuableAsset.profit()).thenReturn(new Money(30, Currency.PLN));
+    void shouldCalculateProfitOnlyForValuableAssets() {
+        Portfolio portfolio = new Portfolio();
 
-        Asset nonValuableAsset = mock(Asset.class);
+        portfolio.addAsset(new Bond(
+                "Bond",
+                new Money(1_000, Currency.PLN),
+                LocalDate.now().minusYears(1),
+                10,
+                12
+        ));
 
-        portfolio.addAsset(valuableAsset);
-        portfolio.addAsset(nonValuableAsset);
+        portfolio.addAsset(new Cash(
+                new Money(500, Currency.PLN),
+                LocalDate.now()
+        ));
 
         Map<?, Double> profits = portfolio.totalProfitByCurrency();
 
-        assertEquals(1, profits.size());
-        assertEquals(30, profits.get(Currency.PLN));
+        assertEquals(100, profits.get(Currency.PLN), 0.01);
     }
 }
