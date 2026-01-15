@@ -4,19 +4,22 @@ import org.portfolio.asset.core.Money;
 import org.portfolio.asset.model.*;
 import org.portfolio.asset.unit.CryptoCurrency;
 import org.portfolio.asset.unit.Currency;
-import org.portfolio.manager.PortfolioManager;
+import org.portfolio.manager.Portfolio;
 
 import java.time.LocalDate;
 
-public final class PortfolioService {
+public final class DemoPortfolio {
 
-    private PortfolioService() {
+    private DemoPortfolio() {
     }
 
-    public static void run() {
-        PortfolioManager manager = new PortfolioManager();
+    /**
+     * Creates a demo portfolio with prefilled assets.
+     */
+    public static Portfolio create() {
+        Portfolio portfolio = new Portfolio();
 
-        manager.addAsset(new Bond(
+        portfolio.addAsset(new Bond(
                 "Obligacja 3-letnie TOS",
                 new Money(10_000, Currency.PLN),
                 LocalDate.of(2025, 2, 5),
@@ -24,12 +27,12 @@ public final class PortfolioService {
                 36
         ));
 
-        manager.addAsset(new Cash(
+        portfolio.addAsset(new Cash(
                 new Money(800, Currency.PLN),
                 LocalDate.of(2025, 2, 5)
         ));
 
-        manager.addAsset(new Crypto(
+        portfolio.addAsset(new Crypto(
                 CryptoCurrency.BTC,
                 Currency.EUR,
                 LocalDate.of(2024, 3, 2),
@@ -37,7 +40,7 @@ public final class PortfolioService {
                 39_000
         ));
 
-        manager.addAsset(new Deposit(
+        portfolio.addAsset(new Deposit(
                 "Lokata Mobilna",
                 new Money(12_000, Currency.PLN),
                 LocalDate.of(2025, 3, 6),
@@ -45,7 +48,7 @@ public final class PortfolioService {
                 6
         ));
 
-        manager.addAsset(new Fund(
+        portfolio.addAsset(new Fund(
                 "PKO Technologii i Innowacji Globalny",
                 LocalDate.of(2025, 3, 6),
                 Currency.PLN,
@@ -53,7 +56,7 @@ public final class PortfolioService {
                 250
         ));
 
-        manager.addAsset(new Metal(
+        portfolio.addAsset(new Metal(
                 org.portfolio.asset.unit.Metal.GOLD,
                 LocalDate.of(2024, 3, 8),
                 Currency.USD,
@@ -62,7 +65,7 @@ public final class PortfolioService {
                 3_500
         ));
 
-        manager.addAsset(new SavingsAccount(
+        portfolio.addAsset(new SavingsAccount(
                 "Oko Bonus",
                 "ING",
                 new Money(15_000, Currency.PLN),
@@ -70,7 +73,7 @@ public final class PortfolioService {
                 5.2
         ));
 
-        manager.addAsset(new Stock(
+        portfolio.addAsset(new Stock(
                 "PKN Orlen",
                 Currency.PLN,
                 LocalDate.of(2025, 2, 7),
@@ -78,6 +81,6 @@ public final class PortfolioService {
                 65.3
         ));
 
-        manager.report();
+        return portfolio;
     }
 }
