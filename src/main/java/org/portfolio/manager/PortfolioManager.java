@@ -1,7 +1,8 @@
 package org.portfolio.manager;
 
-import org.portfolio.asset.core.Money;
 import org.portfolio.asset.core.Asset;
+import org.portfolio.asset.core.Money;
+import org.portfolio.asset.core.ValuableAsset;
 import org.portfolio.asset.unit.MonetaryUnit;
 
 import java.util.ArrayList;
@@ -19,6 +20,10 @@ public class PortfolioManager {
         }
     }
 
+    /**
+     * Sum of purchase values grouped by currency.
+     * Applies to ALL assets.
+     */
     public Map<MonetaryUnit, Double> totalPurchaseValueByCurrency() {
         return assets.stream()
                 .map(Asset::purchaseValue)
@@ -28,9 +33,15 @@ public class PortfolioManager {
                 ));
     }
 
+    /**
+     * Sum of profits grouped by currency.
+     * Applies ONLY to valuable assets.
+     */
     public Map<MonetaryUnit, Double> totalProfitByCurrency() {
         return assets.stream()
-                .map(Asset::profit)
+                .filter(ValuableAsset.class::isInstance)
+                .map(ValuableAsset.class::cast)
+                .map(ValuableAsset::profit)
                 .collect(Collectors.groupingBy(
                         Money::currency,
                         Collectors.summingDouble(Money::amount)
@@ -41,17 +52,38 @@ public class PortfolioManager {
         return List.copyOf(assets);
     }
 
+    /**
+     * Detailed report.
+     * Profit shown only where applicable.
+     */
     public void report() {
-        assets.forEach(asset -> System.out.printf(
-                "%s | %s | %s | %.2f %s | %.2f %s%n",
-                asset.type().getDisplayName(),
-                asset.name(),
-                asset.purchaseDate(),
-                asset.purchaseValue().amount(),
-                asset.purchaseValue().currency(),
-                asset.profit().amount(),
-                asset.profit().currency()
-        ));
+        // Print header with extended Name column
+        System.out.printf(
+                "%-20s | %-50s | %-12s | %-12s | %-12s | %-12s%n",
+                "Asset Type", "Name", "Purchase Date", "Purchase Value", "Currency", "Profit"
+        );
+        System.out.println("---------------------------------------------------------------------------------------------------------------");
+
+        // Print each asset
+        assets.forEach(asset -> {
+            System.out.printf(
+                    "%-20s | %-50s | %-12s | %12.2f | %-12s",
+                    asset.type().getDisplayName(),
+                    asset.name(),
+                    asset.purchaseDate(),
+                    asset.purchaseValue().amount(),
+                    asset.purchaseValue().currency()
+            );
+
+            if (asset instanceof ValuableAsset valuableAsset) {
+                Money profit = valuableAsset.profit();
+                System.out.printf(" | %12.2f %s", profit.amount(), profit.currency());
+            } else {
+                System.out.print(" | N/A");
+            }
+
+            System.out.println();
+        });
     }
 
     public void showAssets() {
