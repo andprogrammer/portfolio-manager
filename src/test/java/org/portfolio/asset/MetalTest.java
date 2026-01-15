@@ -3,7 +3,8 @@ package org.portfolio.asset;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.portfolio.asset.monetaryUnit.Currency;
+import org.portfolio.asset.model.Metal;
+import org.portfolio.asset.unit.Currency;
 
 import java.time.LocalDate;
 
@@ -13,7 +14,7 @@ class MetalTest {
 
     @BeforeEach
     void setUp() {
-        metal = new Metal(org.portfolio.asset.monetaryUnit.Metal.GOLD,
+        metal = new Metal(org.portfolio.asset.unit.Metal.GOLD,
                 LocalDate.of(2024, 3, 8),
                 Currency.USD,
                 2,
@@ -23,7 +24,7 @@ class MetalTest {
 
     @Test
     void name() {
-        Assertions.assertEquals(org.portfolio.asset.monetaryUnit.Metal.GOLD.getName(), metal.name());
+        Assertions.assertEquals(org.portfolio.asset.unit.Metal.GOLD.getName(), metal.name());
     }
 
     @Test

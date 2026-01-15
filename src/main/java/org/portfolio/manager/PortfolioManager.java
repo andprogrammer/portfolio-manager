@@ -1,8 +1,8 @@
 package org.portfolio.manager;
 
-import org.portfolio.asset.Money;
-import org.portfolio.asset.impl.Asset;
-import org.portfolio.asset.monetaryUnit.MonetaryUnit;
+import org.portfolio.asset.core.Money;
+import org.portfolio.asset.core.Asset;
+import org.portfolio.asset.unit.MonetaryUnit;
 
 import java.util.ArrayList;
 import java.util.List;

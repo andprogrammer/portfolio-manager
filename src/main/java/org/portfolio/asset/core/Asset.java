@@ -1,6 +1,4 @@
-package org.portfolio.asset.impl;
-
-import org.portfolio.asset.Money;
+package org.portfolio.asset.core;
 
 import java.time.LocalDate;
 

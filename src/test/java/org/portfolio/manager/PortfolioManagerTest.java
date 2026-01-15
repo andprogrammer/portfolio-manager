@@ -2,9 +2,9 @@ package org.portfolio.manager;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.portfolio.asset.Bond;
-import org.portfolio.asset.Money;
-import org.portfolio.asset.monetaryUnit.Currency;
+import org.portfolio.asset.model.Bond;
+import org.portfolio.asset.core.Money;
+import org.portfolio.asset.unit.Currency;
 
 import java.time.LocalDate;
 

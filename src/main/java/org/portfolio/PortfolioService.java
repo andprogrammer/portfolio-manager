@@ -1,8 +1,9 @@
 package org.portfolio;
 
-import org.portfolio.asset.*;
-import org.portfolio.asset.monetaryUnit.CryptoCurrency;
-import org.portfolio.asset.monetaryUnit.Currency;
+import org.portfolio.asset.core.Money;
+import org.portfolio.asset.model.*;
+import org.portfolio.asset.unit.CryptoCurrency;
+import org.portfolio.asset.unit.Currency;
 import org.portfolio.manager.PortfolioManager;
 
 import java.time.LocalDate;
@@ -38,7 +39,7 @@ public class PortfolioService {
                 85,
                 250));
 
-        manager.addAsset(new Metal(org.portfolio.asset.monetaryUnit.Metal.GOLD,
+        manager.addAsset(new Metal(org.portfolio.asset.unit.Metal.GOLD,
                 LocalDate.of(2024, 3, 8),
                 Currency.USD,
                 2,

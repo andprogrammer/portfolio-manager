@@ -1,4 +1,4 @@
-package org.portfolio.asset.monetaryUnit;
+package org.portfolio.asset.unit;
 
 public interface MonetaryUnit {
     String getName();
