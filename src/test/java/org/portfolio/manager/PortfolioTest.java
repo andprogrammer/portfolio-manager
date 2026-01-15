@@ -1,4 +1,4 @@
-package org.portfolio.portfolio;
+package org.portfolio.manager;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

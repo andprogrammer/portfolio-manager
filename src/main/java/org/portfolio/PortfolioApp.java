@@ -1,6 +1,6 @@
 package org.portfolio;
 
-import org.portfolio.portfolio.Portfolio;
+import org.portfolio.manager.Portfolio;
 
 public final class PortfolioApp {
 

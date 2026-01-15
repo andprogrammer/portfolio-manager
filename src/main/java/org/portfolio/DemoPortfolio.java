@@ -4,7 +4,7 @@ import org.portfolio.asset.core.Money;
 import org.portfolio.asset.model.*;
 import org.portfolio.asset.unit.CryptoCurrency;
 import org.portfolio.asset.unit.Currency;
-import org.portfolio.portfolio.Portfolio;
+import org.portfolio.manager.Portfolio;
 
 import java.time.LocalDate;
 
