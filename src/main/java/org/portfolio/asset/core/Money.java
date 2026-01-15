@@ -2,19 +2,33 @@ package org.portfolio.asset.core;
 
 import org.portfolio.asset.unit.MonetaryUnit;
 
+import java.util.Objects;
+
 public record Money(double amount, MonetaryUnit currency) {
 
-    public Money add(Money other) {
-        if (!currency.equals(other.currency)) {
-            throw new IllegalArgumentException("Currencies must match to add");
+    public Money {
+        Objects.requireNonNull(currency, "Currency must not be null");
+
+        if (Double.isNaN(amount) || Double.isInfinite(amount)) {
+            throw new IllegalArgumentException("Amount must be a finite number");
         }
-        return new Money(amount + other.amount, currency);
+    }
+
+    public Money add(Money other) {
+        requireSameCurrency(other);
+        return new Money(this.amount + other.amount, currency);
     }
 
     public Money subtract(Money other) {
+        requireSameCurrency(other);
+        return new Money(this.amount - other.amount, currency);
+    }
+
+    private void requireSameCurrency(Money other) {
+        Objects.requireNonNull(other, "Other money must not be null");
+
         if (!currency.equals(other.currency)) {
-            throw new IllegalArgumentException("Currencies must match to subtract");
+            throw new IllegalArgumentException("Currencies must match");
         }
-        return new Money(amount - other.amount, currency);
     }
 }
