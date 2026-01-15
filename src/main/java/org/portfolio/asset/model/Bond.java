@@ -23,7 +23,7 @@ public record Bond(String name,
     public Money currentValue() {
         double years = durationMonths / 12.0;
         double calculation = purchaseValue.amount() * (1 + (annualInterestRate / 100) * years);
-        return new Money(calculation, Currency.PLN);
+        return new Money(calculation, purchaseValue.currency());
     }
 
     public LocalDate maturityDate() {
