@@ -8,11 +8,35 @@ import static org.junit.jupiter.api.Assertions.*;
 class MoneyTest {
 
     @Test
-    void shouldAddMoneyWithSameCurrency() {
-        Money m1 = new Money(100, Currency.PLN);
-        Money m2 = new Money(50, Currency.PLN);
+    void shouldCreateMoneyWithNegativeAmount() {
+        Money loss = new Money(-100, Currency.PLN);
+        assertEquals(-100, loss.amount());
+    }
 
-        Money result = m1.add(m2);
+    @Test
+    void shouldRejectNullCurrency() {
+        assertThrows(NullPointerException.class,
+                () -> new Money(100, null));
+    }
+
+    @Test
+    void shouldRejectNaN() {
+        assertThrows(IllegalArgumentException.class,
+                () -> new Money(Double.NaN, Currency.PLN));
+    }
+
+    @Test
+    void shouldRejectInfinity() {
+        assertThrows(IllegalArgumentException.class,
+                () -> new Money(Double.POSITIVE_INFINITY, Currency.PLN));
+    }
+
+    @Test
+    void shouldAddMoneyWithSameCurrency() {
+        Money a = new Money(100, Currency.PLN);
+        Money b = new Money(50, Currency.PLN);
+
+        Money result = a.add(b);
 
         assertEquals(150, result.amount());
         assertEquals(Currency.PLN, result.currency());
@@ -20,19 +44,20 @@ class MoneyTest {
 
     @Test
     void shouldThrowWhenAddingDifferentCurrencies() {
-        Money m1 = new Money(100, Currency.PLN);
-        Money m2 = new Money(50, Currency.EUR);
+        Money pln = new Money(100, Currency.PLN);
+        Money eur = new Money(10, Currency.EUR);
 
-        assertThrows(IllegalArgumentException.class, () -> m1.add(m2));
+        assertThrows(IllegalArgumentException.class,
+                () -> pln.add(eur));
     }
 
     @Test
-    void shouldSubtractMoneyWithSameCurrency() {
-        Money m1 = new Money(100, Currency.USD);
-        Money m2 = new Money(40, Currency.USD);
+    void shouldSubtractMoney() {
+        Money a = new Money(100, Currency.PLN);
+        Money b = new Money(30, Currency.PLN);
 
-        Money result = m1.subtract(m2);
+        Money result = a.subtract(b);
 
-        assertEquals(60, result.amount());
+        assertEquals(70, result.amount());
     }
 }

@@ -10,22 +10,22 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class ValuableAssetTest {
 
     @Test
-    void shouldCalculateProfitAsCurrentMinusPurchase() {
+    void shouldCalculateProfitCorrectly() {
         ValuableAsset asset = new ValuableAsset() {
 
             @Override
             public Money purchaseValue() {
-                return new Money(100, Currency.PLN);
+                return new Money(200, Currency.PLN);
             }
 
             @Override
             public Money currentValue() {
-                return new Money(130, Currency.PLN);
+                return new Money(150, Currency.PLN);
             }
 
             @Override
             public AssetType type() {
-                return AssetType.BOND;
+                return AssetType.STOCK;
             }
 
             @Override
@@ -41,7 +41,7 @@ class ValuableAssetTest {
 
         Money profit = asset.profit();
 
-        assertEquals(30, profit.amount());
+        assertEquals(-50, profit.amount());
         assertEquals(Currency.PLN, profit.currency());
     }
 }
