@@ -10,13 +10,13 @@ import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class PortfolioManagerTest {
+class PortfolioTest {
 
-    PortfolioManager manager;
+    Portfolio portfolio;
 
     @BeforeEach
     void setUp() {
-        manager = new PortfolioManager();
+        portfolio = new Portfolio();
     }
 
     @Test
@@ -26,10 +26,8 @@ class PortfolioManagerTest {
                 LocalDate.of(2025, 2, 5),
                 5.75,
                 36);
-        manager.addAsset(bond);
-        assertEquals(bond.name(), manager.findAll().getFirst().name());
-        assertEquals(bond.purchaseDate(), manager.findAll().getFirst().purchaseDate());
-//        assertEquals(bond.annualInterestRate(), manager.findAll().getFirst().annualInterestRate());
-//        assertEquals(bond.durationMonths(), manager.findAll().getFirst().durationMonths());
+        portfolio.addAsset(bond);
+        assertEquals(bond.name(), portfolio.findAll().getFirst().name());
+        assertEquals(bond.purchaseDate(), portfolio.findAll().getFirst().purchaseDate());
     }
 }
