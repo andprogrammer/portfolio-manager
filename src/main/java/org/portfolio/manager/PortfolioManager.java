@@ -1,6 +1,6 @@
 package org.portfolio.manager;
 
-import org.portfolio.asset.model.Money;
+import org.portfolio.asset.core.Money;
 import org.portfolio.asset.core.Asset;
 import org.portfolio.asset.unit.MonetaryUnit;
 

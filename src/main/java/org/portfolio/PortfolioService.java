@@ -1,5 +1,6 @@
 package org.portfolio;
 
+import org.portfolio.asset.core.Money;
 import org.portfolio.asset.model.*;
 import org.portfolio.asset.unit.CryptoCurrency;
 import org.portfolio.asset.unit.Currency;

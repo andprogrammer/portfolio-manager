@@ -1,6 +1,7 @@
 package org.portfolio.asset.model;
 
 import org.portfolio.asset.core.AssetType;
+import org.portfolio.asset.core.Money;
 import org.portfolio.asset.core.ValuableAsset;
 import org.portfolio.asset.unit.Currency;
 

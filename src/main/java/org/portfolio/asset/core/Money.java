@@ -1,4 +1,4 @@
-package org.portfolio.asset.model;
+package org.portfolio.asset.core;
 
 import org.portfolio.asset.unit.MonetaryUnit;
 

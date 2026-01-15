@@ -2,6 +2,7 @@ package org.portfolio.asset.model;
 
 import org.portfolio.asset.core.Asset;
 import org.portfolio.asset.core.AssetType;
+import org.portfolio.asset.core.Money;
 import org.portfolio.asset.unit.MonetaryUnit;
 
 import java.time.LocalDate;
