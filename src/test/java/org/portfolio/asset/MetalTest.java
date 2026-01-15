@@ -1,44 +1,63 @@
 package org.portfolio.asset;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.portfolio.asset.model.Metal;
+import org.portfolio.asset.core.Money;
 import org.portfolio.asset.unit.Currency;
 
-import java.time.LocalDate;
+import static org.junit.jupiter.api.Assertions.*;
 
-class MetalTest {
+class MoneyTest {
 
-    Metal metal;
+    @Test
+    void shouldAddMoneyWithSameCurrency() {
+        Money m1 = new Money(100, Currency.PLN);
+        Money m2 = new Money(50, Currency.PLN);
 
-    @BeforeEach
-    void setUp() {
-        metal = new Metal(org.portfolio.asset.unit.Metal.GOLD,
-                LocalDate.of(2024, 3, 8),
-                Currency.USD,
-                2,
-                31.1,
-                3500);
+        Money result = m1.add(m2);
+
+        assertEquals(150, result.amount());
+        assertEquals(Currency.PLN, result.currency());
     }
 
     @Test
-    void name() {
-        Assertions.assertEquals(org.portfolio.asset.unit.Metal.GOLD.getName(), metal.name());
+    void shouldThrowWhenAddingDifferentCurrencies() {
+        Money m1 = new Money(100, Currency.PLN);
+        Money m2 = new Money(50, Currency.EUR);
+
+        assertThrows(IllegalArgumentException.class, () -> m1.add(m2));
     }
 
     @Test
-    void purchaseDate() {
-        Assertions.assertEquals(LocalDate.of(2024, 3, 8), metal.purchaseDate());
+    void shouldSubtractMoneyWithSameCurrency() {
+        Money m1 = new Money(100, Currency.USD);
+        Money m2 = new Money(40, Currency.USD);
+
+        Money result = m1.subtract(m2);
+
+        assertEquals(60, result.amount());
     }
 
     @Test
-    void weight() {
-        Assertions.assertEquals(31.1, metal.weight());
+    void shouldAllowNegativeAmounts() {
+        Money loss = new Money(-100, Currency.PLN);
+        assertEquals(-100, loss.amount());
     }
 
     @Test
-    void pricePerUnit() {
-        Assertions.assertEquals(3500, metal.pricePerUnit());
+    void shouldRejectNaN() {
+        assertThrows(IllegalArgumentException.class,
+                () -> new Money(Double.NaN, Currency.PLN));
+    }
+
+    @Test
+    void shouldRejectInfinity() {
+        assertThrows(IllegalArgumentException.class,
+                () -> new Money(Double.POSITIVE_INFINITY, Currency.PLN));
+    }
+
+    @Test
+    void shouldRejectNullCurrency() {
+        assertThrows(NullPointerException.class,
+                () -> new Money(100, null));
     }
 }
