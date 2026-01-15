@@ -6,8 +6,8 @@ public interface Asset {
     AssetType type();
     String name();
     LocalDate purchaseDate();
+    /**
+     * Value at the time of purchase.
+     */
     Money purchaseValue();
-    default Money profit() {
-        return purchaseValue();
-    }
 }
