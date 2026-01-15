@@ -1,44 +1,60 @@
 package org.portfolio.asset;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.portfolio.asset.model.Bond;
 import org.portfolio.asset.core.Money;
+import org.portfolio.asset.model.Bond;
 import org.portfolio.asset.unit.Currency;
 
 import java.time.LocalDate;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 class BondTest {
 
-    Bond bond;
+    @Test
+    void shouldCalculateCurrentValueCorrectly() {
+        Bond bond = new Bond(
+                "Test Bond",
+                new Money(10_000, Currency.PLN),
+                LocalDate.of(2024, 1, 1),
+                5.0,
+                24
+        );
 
-    @BeforeEach
-    void setUp() {
-        bond = new Bond("Obligacja Skarbowa",
-                new Money(10000, Currency.PLN),
-                LocalDate.of(2025, 2, 5),
-                5.75,
-                36);
+        Money currentValue = bond.currentValue();
+
+        // 2 years * 5% = 10%
+        assertEquals(11_000, currentValue.amount(), 0.01);
+        assertEquals(Currency.PLN, currentValue.currency());
     }
 
     @Test
-    void name() {
-        Assertions.assertEquals("Obligacja Skarbowa", bond.name());
+    void shouldReturnCorrectMaturityDate() {
+        Bond bond = new Bond(
+                "Test Bond",
+                new Money(1_000, Currency.PLN),
+                LocalDate.of(2024, 1, 1),
+                5.0,
+                12
+        );
+
+        assertEquals(
+                LocalDate.of(2025, 1, 1),
+                bond.maturityDate()
+        );
     }
 
     @Test
-    void purchaseDate() {
-        Assertions.assertEquals(LocalDate.of(2025, 2, 5), bond.purchaseDate());
-    }
+    void shouldDetectMaturedBond() {
+        Bond bond = new Bond(
+                "Old Bond",
+                new Money(1_000, Currency.PLN),
+                LocalDate.now().minusMonths(13),
+                5.0,
+                12
+        );
 
-    @Test
-    void interestRate() {
-        Assertions.assertEquals(5.75, bond.annualInterestRate());
-    }
-
-    @Test
-    void durationMonths() {
-        Assertions.assertEquals(36, bond.durationMonths());
+        assertTrue(bond.isMatured());
     }
 }
