@@ -1,9 +1,8 @@
-package org.portfolio.asset;
+package org.portfolio.asset.model;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.portfolio.asset.model.Metal;
 import org.portfolio.asset.unit.Currency;
 
 import java.time.LocalDate;
