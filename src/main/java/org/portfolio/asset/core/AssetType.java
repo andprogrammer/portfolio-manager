@@ -1,4 +1,4 @@
-package org.portfolio.asset.impl;
+package org.portfolio.asset.core;
 
 public enum AssetType {
 

@@ -1,6 +1,6 @@
-package org.portfolio.asset.impl;
+package org.portfolio.asset.core;
 
-import org.portfolio.asset.Money;
+import org.portfolio.asset.model.Money;
 
 public interface ValuableAsset extends Asset {
 

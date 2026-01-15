@@ -1,6 +1,6 @@
-package org.portfolio.asset;
+package org.portfolio.asset.model;
 
-import org.portfolio.asset.monetaryUnit.MonetaryUnit;
+import org.portfolio.asset.unit.MonetaryUnit;
 
 public record Money(double amount, MonetaryUnit currency) {
 

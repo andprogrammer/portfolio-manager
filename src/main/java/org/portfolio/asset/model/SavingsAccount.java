@@ -1,7 +1,7 @@
-package org.portfolio.asset;
+package org.portfolio.asset.model;
 
-import org.portfolio.asset.impl.AssetType;
-import org.portfolio.asset.impl.ValuableAsset;
+import org.portfolio.asset.core.AssetType;
+import org.portfolio.asset.core.ValuableAsset;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
